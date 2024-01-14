@@ -75,5 +75,6 @@ def morse_code_to_sound(morse_code: list):
                 time.sleep(0.5)
 
 
-morse_code = translate_to_morse_code(input())
-morse_code_to_sound(morse_code)
+while True:
+    morse_code = translate_to_morse_code(input())
+    morse_code_to_sound(morse_code)

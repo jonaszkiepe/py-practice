@@ -22,10 +22,13 @@ def gen_board():
     board = ""
     for row in positions[0]:
         for char in row:
-            board += char + "|"
+            if char not in ["x", "o"]:
+                board += " " + "|"
+            else:
+                board += char + "|"
         board = board[:-1]
-        board += " "
-    for row in board.split():
+        board += "/-----/"
+    for row in board.split("/")[:-2]:
         print(row)
 
 
@@ -50,8 +53,10 @@ def switch_player(player):
 
 def main():
     clear()
-    player = random.randint(1, 2)
-    while True:
+    player = 1
+    turns = 0
+    while turns < 9:
+        turns += 1
         print(f"player {player} turn")
         gen_board()
         replace_number(input(), player)
@@ -61,7 +66,10 @@ def main():
         clear()
     clear()
     gen_board()
-    print(f"player {player} won!")
+    if turns == 9:
+        print("\ndraw")
+    else:
+        print(f"\nplayer {player} won!")
 
 
 if __name__ == "__main__":
